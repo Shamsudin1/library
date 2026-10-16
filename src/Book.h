@@ -8,7 +8,7 @@ private:
     std::string AuthorBook;
     std::string YearOfPublication;
 public:
-    Book(std::string name, std::string author, std::string year);
+    Book(const std::string& name, const std::string& author, const std::string& year);
     std::string getNameBook() const;
     std::string getAuthorBook() const;
     std::string getYearOfPublication() const;

@@ -3,7 +3,7 @@
 #include <ostream>
 #include <string>
 
-Reader::Reader(std::string name, int number) : Reader_Name(name), Number_Bilet(number){}
+Reader::Reader(const std::string& name, const int& number) : Reader_Name(name), Number_Bilet(number){}
 std::string Reader::getReader_Name() const {return Reader_Name;}
 int Reader::getNumber_Bilet() const {return Number_Bilet;}
 

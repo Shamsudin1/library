@@ -2,7 +2,7 @@
 #include <string>
 #include <ostream>
 
-Book::Book(std::string name, std::string author, std::string year) : 
+Book::Book(const std::string& name, const std::string& author, const std::string& year) : 
 nameBook(name), AuthorBook(author), YearOfPublication(year){}
 
 std::string Book::getNameBook() const {return nameBook;}

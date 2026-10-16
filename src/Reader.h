@@ -7,7 +7,7 @@ private:
     std::string Reader_Name;
     int Number_Bilet;
 public:
-    Reader(std::string name, int number);
+    Reader(const std::string& name, const int& number);
     std::string getReader_Name() const;
     int getNumber_Bilet() const;
 };
