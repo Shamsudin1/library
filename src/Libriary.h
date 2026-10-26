@@ -13,4 +13,5 @@ public:
     void printAllBooks() const;
     std::optional<Book> FindBookByName (const std::string& name_book) const;
     void showBook(const Libriary& lib, const std::string& name_book) const;
+    void printBookByName(const std::string& name) const; 
 };
