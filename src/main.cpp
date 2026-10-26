@@ -18,4 +18,8 @@ int main(){
     lib.printAllBooks();
     lib.showBook(lib, "Brain");
     lib.showBook(lib, "sdsd");
+
+    lib.printBookByName("Brain");   
+    lib.printBookByName("Gays");    
+    lib.printBookByName("sdsd");
 }

@@ -1,4 +1,5 @@
 #include "Libriary.h"
+#include "Book.h"
 #include <iostream>
 #include <vector>
 #include <optional>
@@ -30,4 +31,16 @@ void Libriary::showBook(const Libriary& lib, const std::string& name) const {
     else{
         std::cout << "Книга не найдена\n";
     }
+}
+
+void Libriary::printBookByName(const std::string &name) const {
+   for(const Book& t_b : books){
+    if(name == t_b.getNameBook()){
+        std::cout << t_b << "\n"; 
+        
+    }
+   }
+   if(!FindBookByName(name)){
+    std::cout << "not founded!";
+   }
 }
