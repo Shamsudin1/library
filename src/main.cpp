@@ -2,6 +2,7 @@
 #include "Book.h"
 #include "Reader.h"
 #include "Libriary.h"
+#include "Loan.h"
 
 int main(){
     Book book1("Flowers", "Pushkin", "1964");
@@ -22,4 +23,9 @@ int main(){
     lib.printBookByName("Brain");   
     lib.printBookByName("Gays");    
     lib.printBookByName("sdsd");
+
+
+    Loan loan1(book2, reader1, "30.10.2026", "06.11.2026");
+    std::cout << loan1;
+    
 }

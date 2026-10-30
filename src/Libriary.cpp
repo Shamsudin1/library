@@ -41,6 +41,6 @@ void Libriary::printBookByName(const std::string &name) const {
     }
    }
    if(!FindBookByName(name)){
-    std::cout << "not founded!";
+    std::cout << "not founded!\n\n";
    }
 }
