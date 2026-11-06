@@ -1,12 +1,19 @@
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Book.h"
 #include "Reader.h"
 #include "Libriary.h"
 #include "Loan.h"
+#include "Storage.h"
 
 int main(){
     Libriary lib;
+    Storage storage("Books.txt");
+    for(const Book& b : storage.loadBooks() ){
+        lib.addBook(b);
+    }
+
     std::cout << "Выберите один из пунктов: \n";
     std::cout << "1. Добавить книгу\n";
     std::cout << "2. Показать все книги\n";
@@ -36,6 +43,7 @@ int main(){
             Book temp_book(temp_nameBook, temp_AuthorBook, temp_YearOfPublication);
             lib.addBook(temp_book);
             std::cout << "Книга добавлена в библиотеку!\n";
+            storage.saveBooks(lib.getBooks());
         }
         else if(a == 2){
             lib.printAllBooks();
@@ -75,4 +83,6 @@ int main(){
         }
         
     }while(a != 0);
+
+   
 } 

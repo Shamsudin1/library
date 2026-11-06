@@ -3,9 +3,17 @@
 #include <iostream>
 #include <vector>
 #include <optional>
+#include <fstream>
+#include <string>
 
 void Libriary::addBook(const Book& book){
-    books.push_back(book);
+    auto temp_book = FindBookByName(book.getNameBook());
+    if(!temp_book.has_value()){
+        books.push_back(book);
+    }
+    else{
+        std::cerr << "Книга уже есть в библиотеке!\n";
+    }
 }
 void Libriary::printAllBooks() const {
     for(const Book& b : books){
@@ -23,24 +31,15 @@ std::optional<Book> Libriary::FindBookByName  (const std::string& name_book) con
     return std::nullopt;
 }
 
-void Libriary::showBook(const Libriary& lib, const std::string& name) const {
-    auto result = lib.FindBookByName(name);
-    if(result.has_value()){
-        std::cout << *result << "\n";
-    }
-    else{
-        std::cout << "Книга не найдена\n";
-    }
-}
 
 void Libriary::printBookByName(const std::string &name) const {
-   for(const Book& t_b : books){
-    if(name == t_b.getNameBook()){
-        std::cout << t_b << "\n"; 
-        
-    }
+   auto temp_book = FindBookByName(name);
+   if(temp_book.has_value()){
+        std::cout << *temp_book;
    }
-   if(!FindBookByName(name)){
-    std::cout << "not founded!\n\n";
-   }
+   else{std::cout << "Книга не найдена!\n";}
+}
+
+const std::vector<Book>& Libriary::getBooks() const {
+    return books;
 }
