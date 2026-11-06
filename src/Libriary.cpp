@@ -10,6 +10,7 @@ void Libriary::addBook(const Book& book){
     auto temp_book = FindBookByName(book.getNameBook());
     if(!temp_book.has_value()){
         books.push_back(book);
+        std::cout << "Книга добавлена в библиотеку!\n";
     }
     else{
         std::cerr << "Книга уже есть в библиотеке!\n";
@@ -43,3 +44,16 @@ void Libriary::printBookByName(const std::string &name) const {
 const std::vector<Book>& Libriary::getBooks() const {
     return books;
 }
+
+void Libriary::addLoan(const Loan& loan){
+    std::string book_nm = loan.getBook().getNameBook();    
+    for(const Loan& ln : loans){
+        std::string bk = ln.getBook().getNameBook();
+        if(book_nm == bk){
+            std::cerr << "Книга уже была выдана другому человеку!\n";    
+            return;
+        }        
+    }
+    std::cout << "Книга успешно выдана!\n";
+    loans.push_back(loan);
+}   

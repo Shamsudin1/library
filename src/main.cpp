@@ -76,8 +76,7 @@ int main(){
                 std::cout << "Напишите дату возврата: ";
                 std::getline(std::cin, temp_date_return);
                 Loan loan(*found, reader, temp_date_of_issue, temp_date_return);
-                std::cout << loan;
-                std::cout << "Книга выдана!\n";
+                lib.addLoan(loan);
             }
             else{std::cout << "Книга не найдена!\n";}
         }
