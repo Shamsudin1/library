@@ -6,16 +6,15 @@
 #include <fstream>
 #include <string>
 
-void Libriary::addBook(const Book& book){
+bool Libriary::addBook(const Book& book){
     auto temp_book = FindBookByName(book.getNameBook());
     if(!temp_book.has_value()){
         books.push_back(book);
-        std::cout << "Книга добавлена в библиотеку!\n";
+        return true;
     }
-    else{
-        std::cerr << "Книга уже есть в библиотеке!\n";
-    }
+    return false;
 }
+
 void Libriary::printAllBooks() const {
     for(const Book& b : books){
         std::cout << b << "\n";
@@ -44,16 +43,44 @@ void Libriary::printBookByName(const std::string &name) const {
 const std::vector<Book>& Libriary::getBooks() const {
     return books;
 }
+const std::vector<Loan>& Libriary::getLoans() const {
+    return loans;
+}
 
-void Libriary::addLoan(const Loan& loan){
-    std::string book_nm = loan.getBook().getNameBook();    
+bool Libriary::addLoan(const Loan& loan){
+    std::string book_nm = loan.getBook().getNameBook();
     for(const Loan& ln : loans){
         std::string bk = ln.getBook().getNameBook();
         if(book_nm == bk){
-            std::cerr << "Книга уже была выдана другому человеку!\n";    
-            return;
-        }        
+            return false;
+        }
     }
-    std::cout << "Книга успешно выдана!\n";
     loans.push_back(loan);
-}   
+    return true;
+}
+
+bool Libriary::returnBook(const std::string& nameBook){
+    for(auto l = loans.begin(); l != loans.end(); ++l){
+        if(l->getBook().getNameBook() == nameBook){
+            loans.erase(l);
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Libriary::removeBook(const std::string& nameBook){
+    for(auto b = books.begin(); b != books.end(); ++b){
+        if(b->getNameBook() == nameBook){
+            books.erase(b);
+            return true;
+        }
+    }
+    return false;
+}
+
+void Libriary::printAllLoans() const {
+    for(const Loan& l : loans){
+        std::cout << l << "\n";
+    }
+}

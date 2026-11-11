@@ -11,10 +11,14 @@ private:
     std::vector<Book> books;
     std::vector<Loan> loans;
 public:
-    void addBook(const Book& book);
+    bool addBook(const Book& book);
     void printAllBooks() const;
     std::optional<Book> FindBookByName (const std::string& name_book) const;
     void printBookByName(const std::string& name) const; 
     const std::vector<Book>& getBooks() const;
-    void addLoan(const Loan& loan);
+    const std::vector<Loan>& getLoans() const;
+    bool addLoan(const Loan& loan);
+    bool returnBook(const std::string& nameBook);
+    bool removeBook(const std::string& nameBook);
+    void printAllLoans() const;
 };
